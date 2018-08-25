@@ -12,7 +12,7 @@ services:
     hostname: "jenkins.${GROUP_NAME}.${PRODUCT_NAME}.${COMPANY_NAME}"
     restart: "always"
     environment:
-      - JAVA_OPTS=-Djava.util.logging.config.file=/var/jenkins_home/log.properties -Dhudson.footerURL=http://mycompany.com
+      - JAVA_OPTS=-Duser.timezone=Asia/Shanghai -Djava.util.logging.config.file=/var/jenkins_home/log.properties -Dhudson.footerURL=http://mycompany.com
       - JENKINS_UC=https://mirrors.huaweicloud.com/jenkins/updates/
     volumes:
       - /etc/localtime:/etc/localtime:ro
