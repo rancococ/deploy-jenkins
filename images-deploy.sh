@@ -32,11 +32,10 @@ trap "fun_echo_red '******* ERROR: Something went wrong.*******'; exit 1" sigter
 trap "fun_echo_red '******* Caught sigint signal. Stopping...*******'; exit 2" sigint
 
 # set author info
-date=`date "+%Y-%m-%d %H:%M:%S"`
+date1=`date "+%Y-%m-%d %H:%M:%S"`
 date2=`date "+%Y%m%d%H%M%S"`
-build_author="yong.ran@cdjdgm.com"
-build_date="${date}"
-build_date2="${date2}"
+author="yong.ran@cdjdgm.com"
+
 
 # entry base dir
 pwd=`pwd`
