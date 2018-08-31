@@ -8,6 +8,18 @@
 
 set -e
 
+##########################################################################
+# set author info
+date1=`date "+%Y-%m-%d %H:%M:%S"`
+date2=`date "+%Y%m%d%H%M%S"`
+author="yong.ran@cdjdgm.com"
+
+##########################################################################
+# envirionment
+# import local image
+image_local=""
+
+##########################################################################
 # set echo color
 color_red='\033[0;31m'
 color_green='\033[0;32m'
@@ -31,12 +43,7 @@ fun_echo_blue() {
 trap "fun_echo_red '******* ERROR: Something went wrong.*******'; exit 1" sigterm
 trap "fun_echo_red '******* Caught sigint signal. Stopping...*******'; exit 2" sigint
 
-# set author info
-date1=`date "+%Y-%m-%d %H:%M:%S"`
-date2=`date "+%Y%m%d%H%M%S"`
-author="yong.ran@cdjdgm.com"
-
-
+##########################################################################
 # entry base dir
 pwd=`pwd`
 base_dir="${pwd}"
@@ -49,35 +56,34 @@ done
 base_dir="$( cd -P "$( dirname "$source" )" && pwd )"
 cd ${base_dir}
 
-# set docker info
-image_local=""
-
+##########################################################################
 # result code
 re_err=1
 re_ok=0
 
-# #########################################GET OPTION PARAM#########################################
+# show usage
 fun_usage() {
     fun_echo_yellow "Usage: `basename $0` [-l] [-h]"
     fun_echo_yellow "        [-l]          : load images from local tar archive file, default is false/empty."
     exit $re_err
 }
+# get option param
 while getopts lh option
 do
     case $option in
-        l)
-            image_local=true
-            ;;
-        h)
-            fun_usage
-            ;;
-        \?)
-            fun_usage
-            ;;
+    l)
+        image_local=true
+        ;;
+    h)
+        fun_usage
+        ;;
+    \?)
+        fun_usage
+        ;;
     esac
 done
 
-# #########################################FUNCTION#########################################
+# fun_log_echo
 fun_log_echo() {
     l_arg=$1
     l_bs=`basename $0`
@@ -87,19 +93,29 @@ fun_log_echo() {
     return $re_ok
 }
 
-# #########################################DO FUNCTION#########################################
+# import images
+fun_import_images() {
+    fun_log_echo "\>\>\>import images for jenkins."
+    if [ "${image_local}" = "true" ]; then
+        docker load -i "${base_dir}/base/images/base.img"
+    fi
+    return $re_ok
+}
 
-if [ "${image_local}" = "true" ]; then
-    # import images
-    docker load -i "${base_dir}/images/base.img"
-fi
 
-# deploy
-chmod +x ${base_dir}/*.sh
-chmod 777 ${base_dir}/volume/jenkins/data
-chmod 777 ${base_dir}/volume/jenkins/pref
+# deploy images
+fun_deploy_images() {
+    fun_log_echo "\>\>\>deploy images for jenkins."
+    chmod +x ${base_dir}/*/*.sh
+    chmod 777 ${base_dir}/base/volume/jenkins/data
+    chmod 777 ${base_dir}/base/volume/jenkins/pref
+    return $re_ok
+}
 
-fun_log_echo "deploy complete."
+##########################################################################
+# deploy images
+fun_deploy_images
+fun_log_echo "complete."
 fun_log_echo ""
 
 exit $?
