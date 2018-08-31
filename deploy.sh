@@ -115,6 +115,7 @@ fun_deploy_images() {
 ##########################################################################
 # deploy images
 fun_deploy_images
+
 fun_log_echo "complete."
 fun_log_echo ""
 
