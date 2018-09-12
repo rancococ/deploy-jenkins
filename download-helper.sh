@@ -27,8 +27,8 @@ JDK_UPDATE=181
 JDK_BUILD=13
 JDK_PATH=96a7b8442fe848ef90c96a2fad6ed6d1
 JDK_FILE=jdk-${JDK_VERSION}u${JDK_UPDATE}-linux-x64.tar.gz
-JDK_URL=http://download.oracle.com/otn-pub/java/jdk/${JDK_VERSION}u${JDK_UPDATE}-b${JDK_BUILD}/${JDK_PATH}/jdk-${JDK_VERSION}u${JDK_UPDATE}-linux-x64.tar.gz
-#JDK_URL=https://repo.huaweicloud.com/java/jdk/${JDK_VERSION}u${JDK_UPDATE}-b${JDK_BUILD}/jdk-${JDK_VERSION}u${JDK_UPDATE}-linux-x64.tar.gz
+#JDK_URL=http://download.oracle.com/otn-pub/java/jdk/${JDK_VERSION}u${JDK_UPDATE}-b${JDK_BUILD}/${JDK_PATH}/jdk-${JDK_VERSION}u${JDK_UPDATE}-linux-x64.tar.gz
+JDK_URL=https://repo.huaweicloud.com/java/jdk/${JDK_VERSION}u${JDK_UPDATE}-b${JDK_BUILD}/jdk-${JDK_VERSION}u${JDK_UPDATE}-linux-x64.tar.gz
 
 # maven info
 MAVEN_VERSION=3.5.4
