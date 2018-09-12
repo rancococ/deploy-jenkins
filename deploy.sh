@@ -107,8 +107,8 @@ fun_import_images() {
 fun_deploy_images() {
     fun_log_echo "\>\>\>deploy images for jenkins."
     chmod +x ${base_dir}/*/*.sh
+    chmod 777 ${base_dir}/base/volume/jenkins/home
     chmod 777 ${base_dir}/base/volume/jenkins/data
-    chmod 777 ${base_dir}/base/volume/jenkins/pref
     return $re_ok
 }
 
