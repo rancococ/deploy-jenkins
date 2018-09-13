@@ -32,7 +32,7 @@ JDK_URL=https://repo.huaweicloud.com/java/jdk/${JDK_VERSION}u${JDK_UPDATE}-b${JD
 
 # maven info
 MAVEN_VERSION=3.5.4
-MAVEN_FILE=maven-${MAVEN_VERSION}-bin.tar.gz
+MAVEN_FILE=apache-maven-${MAVEN_VERSION}-bin.tar.gz
 MAVEN_URL=https://repo.huaweicloud.com/apache/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz
 
 # gradle info
@@ -64,9 +64,10 @@ white=$(tput setaf 7)
 #
 # header and logging
 #
-header() { printf "\n${underline}${bold}${blue}> %s${reset}\n" "$@"; }
-header2() { printf "\n${underline}${bold}${blue}>> %s${reset}\n" "$@"; }
+header() { printf "\n${underline}${bold}${blue}► %s${reset}\n" "$@"; }
+header2() { printf "\n${underline}${bold}${blue}♦ %s${reset}\n" "$@"; }
 info() { printf "${white}➜ %s${reset}\n" "$@"; }
+info2() { printf "${red}➜ %s${reset}\n" "$@"; }
 warn() { printf "${yellow}➜ %s${reset}\n" "$@"; }
 error() { printf "${red}✖ %s${reset}\n" "$@"; }
 success() { printf "${green}✔ %s${reset}\n" "$@"; }
@@ -192,6 +193,10 @@ fun_download_jdk() {
     info "download jdk [${JDK_VERSION}u${JDK_UPDATE}] start..."
     info "download url [${JDK_URL}]"
     wget -c -O ${base_dir}/${SAVE_PATH}/${JDK_FILE} --no-cookies --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie" ${JDK_URL}
+    tempname=$(tar -tf ${base_dir}/${SAVE_PATH}/${JDK_FILE} | awk -F "/" '{print $1}' | sed -n '1p')
+    rm -rf ${base_dir}/${SAVE_PATH}/${tempname}
+    tar -zxf ${base_dir}/${SAVE_PATH}/${JDK_FILE} -C ${base_dir}/${SAVE_PATH}
+    info2 "unzip path [${base_dir}/${SAVE_PATH}/${tempname}]"
     success "download jdk [${JDK_VERSION}u${JDK_UPDATE}] success, local path is [${base_dir}/${SAVE_PATH}/${JDK_FILE}]."
     return 0
 }
@@ -202,6 +207,10 @@ fun_download_maven() {
     info "download maven [${MAVEN_VERSION}] start..."
     info "download url [${MAVEN_URL}]"
     wget -c -O ${base_dir}/${SAVE_PATH}/${MAVEN_FILE} --no-cookies --no-check-certificate ${MAVEN_URL}
+    tempname=$(tar -tf ${base_dir}/${SAVE_PATH}/${MAVEN_FILE} | awk -F "/" '{print $1}' | sed -n '1p')
+    rm -rf ${base_dir}/${SAVE_PATH}/${tempname}
+    tar -zxf ${base_dir}/${SAVE_PATH}/${MAVEN_FILE} -C ${base_dir}/${SAVE_PATH}
+    info2 "unzip path [${base_dir}/${SAVE_PATH}/${tempname}]"
     success "download maven [${MAVEN_VERSION}] success, local path is [${base_dir}/${SAVE_PATH}/${MAVEN_FILE}]."
     return 0
 }
@@ -212,11 +221,19 @@ fun_download_gradle() {
     info "download gradle [${GRADLE3_VERSION}] start..."
     info "download url [${GRADLE3_URL}]"
     wget -c -O ${base_dir}/${SAVE_PATH}/${GRADLE3_FILE} --no-cookies --no-check-certificate ${GRADLE3_URL}
+    tempname=$(unzip -Z -1 ${base_dir}/${SAVE_PATH}/${GRADLE3_FILE} | awk -F "/" '{print $1}' | sed -n '1p')
+    rm -rf ${base_dir}/${SAVE_PATH}/${tempname}
+    unzip -q ${base_dir}/${SAVE_PATH}/${GRADLE3_FILE} -d ${base_dir}/${SAVE_PATH}
+    info2 "unzip path [${base_dir}/${SAVE_PATH}/${tempname}]"
     success "download gradle [${GRADLE3_VERSION}] success, local path is [${base_dir}/${SAVE_PATH}/${GRADLE3_FILE}]."
     echo
     info "download gradle [${GRADLE4_VERSION}] start..."
     info "download url [${GRADLE4_URL}]"
     wget -c -O ${base_dir}/${SAVE_PATH}/${GRADLE4_FILE} --no-cookies --no-check-certificate ${GRADLE4_URL}
+    tempname=$(unzip -Z -1 ${base_dir}/${SAVE_PATH}/${GRADLE4_FILE} | awk -F "/" '{print $1}' | sed -n '1p')
+    rm -rf ${base_dir}/${SAVE_PATH}/${tempname}
+    unzip -q ${base_dir}/${SAVE_PATH}/${GRADLE4_FILE} -d ${base_dir}/${SAVE_PATH}
+    info2 "unzip path [${base_dir}/${SAVE_PATH}/${tempname}]"
     success "download gradle [${GRADLE4_VERSION}] success, local path is [${base_dir}/${SAVE_PATH}/${GRADLE4_FILE}]."
     return 0
 }
