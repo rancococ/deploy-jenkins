@@ -109,6 +109,7 @@ fun_deploy_images() {
     chmod +x ${base_dir}/*/*.sh
     chmod 777 ${base_dir}/base/volume/jenkins/home
     chmod 777 ${base_dir}/base/volume/jenkins/data
+    chmod 777 ${base_dir}/base/volume/jenkins/back
     return $re_ok
 }
 
