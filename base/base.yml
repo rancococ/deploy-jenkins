@@ -19,6 +19,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - ./volume/jenkins/home:/var/jenkins_home:rw
       - ./volume/jenkins/data:/var/jenkins_data:rw
+      - ./volume/jenkins/back:/var/jenkins_back:rw
     ports:
       - "8080:8080"
       - "50000:50000"
