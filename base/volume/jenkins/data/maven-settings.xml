@@ -116,26 +116,13 @@
 			<url>http://192.168.50.213:8081/nexus/content/repositories/central/</url> 
 			</mirror> -->
 
-<!-- 		<mirror> -->
-<!-- 			<id>central</id> -->
-<!-- 			<mirrorOf>central</mirrorOf> -->
-<!-- 			<name>local-mirror</name> -->
-<!-- 			<url>http://172.16.7.240:8081/nexus/content/repositories/central/</url> -->
-<!-- 		</mirror> -->
-
-<!-- 		<mirror> -->
-<!-- 			<id>thirdparty</id> -->
-<!-- 			<mirrorOf>thirdparty</mirrorOf> -->
-<!-- 			<name>thirdparty-mirror</name> -->
-<!-- 			<url>http://172.16.7.240:8081/nexus/content/repositories/thirdparty/</url> -->
-<!-- 		</mirror> -->
 		<mirror>
 			<id>maven-public</id>
 			<mirrorOf>*</mirrorOf>
 			<name>local-mirror</name>
 			<url>http://192.168.8.250:8081/repository/maven-public/</url>
 		</mirror>
-        
+
 	</mirrors>
 
 	<!-- profiles | This is a list of profiles which can be activated in a variety 
