@@ -1,0 +1,6 @@
+[global]
+# http-proxy-exceptions = *.exception.com, www.internal-site.org
+http-proxy-host = 192.168.180.160
+http-proxy-port = 6969
+# http-proxy-username = defaultusername
+# http-proxy-password = defaultpassword
