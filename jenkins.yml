@@ -8,8 +8,8 @@ services:
   # jenkins
   jenkins:
     image: ${IMAGE_JENKINS}
-    container_name: "jenkins.${GROUP_NAME}.${PRODUCT_NAME}.${COMPANY_NAME}"
-    hostname: "jenkins.${GROUP_NAME}.${PRODUCT_NAME}.${COMPANY_NAME}"
+    container_name: "jenkins.${PRODUCT_NAME}.${COMPANY_NAME}"
+    hostname: "jenkins.${PRODUCT_NAME}.${COMPANY_NAME}"
     restart: "always"
     environment:
       - JAVA_OPTS=-Duser.timezone=Asia/Shanghai -Djava.util.logging.config.file=/var/jenkins_data/log.properties -Dhudson.footerURL=http://mycompany.com
