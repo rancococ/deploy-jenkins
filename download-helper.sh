@@ -23,11 +23,9 @@ author="yong.ran@cdjdgm.com"
 
 # jdk info
 JDK_VERSION=8
-JDK_UPDATE=181
-JDK_BUILD=13
-JDK_PATH=96a7b8442fe848ef90c96a2fad6ed6d1
+JDK_UPDATE=192
+JDK_BUILD=12
 JDK_FILE=jdk-${JDK_VERSION}u${JDK_UPDATE}-linux-x64.tar.gz
-#JDK_URL=http://download.oracle.com/otn-pub/java/jdk/${JDK_VERSION}u${JDK_UPDATE}-b${JDK_BUILD}/${JDK_PATH}/jdk-${JDK_VERSION}u${JDK_UPDATE}-linux-x64.tar.gz
 JDK_URL=https://repo.huaweicloud.com/java/jdk/${JDK_VERSION}u${JDK_UPDATE}-b${JDK_BUILD}/jdk-${JDK_VERSION}u${JDK_UPDATE}-linux-x64.tar.gz
 
 # maven info
@@ -44,7 +42,7 @@ GRADLE4_FILE=gradle-${GRADLE4_VERSION}-bin.zip
 GRADLE4_URL=https://services.gradle.org/distributions/gradle-${GRADLE4_VERSION}-bin.zip
 
 # save path
-SAVE_PATH=base/volume/jenkins/data
+SAVE_PATH=volume/jenkins/data
 
 set -o noglob
 
