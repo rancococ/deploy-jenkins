@@ -34,12 +34,9 @@ MAVEN_FILE=apache-maven-${MAVEN_VERSION}-bin.tar.gz
 MAVEN_URL=https://repo.huaweicloud.com/apache/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz
 
 # gradle info
-GRADLE3_VERSION=3.5.1
-GRADLE3_FILE=gradle-${GRADLE3_VERSION}-bin.zip
-GRADLE3_URL=https://services.gradle.org/distributions/gradle-${GRADLE3_VERSION}-bin.zip
-GRADLE4_VERSION=4.10
-GRADLE4_FILE=gradle-${GRADLE4_VERSION}-bin.zip
-GRADLE4_URL=https://services.gradle.org/distributions/gradle-${GRADLE4_VERSION}-bin.zip
+GRADLE_VERSION=3.5.1
+GRADLE_FILE=gradle-${GRADLE_VERSION}-bin.zip
+GRADLE_URL=https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip
 
 # save path
 SAVE_PATH=volume/jenkins/data
@@ -216,23 +213,14 @@ fun_download_maven() {
 # download gradle
 fun_download_gradle() {
     header "download gradle:"
-    info "download gradle [${GRADLE3_VERSION}] start..."
-    info "download url [${GRADLE3_URL}]"
-    wget -c -O ${base_dir}/${SAVE_PATH}/${GRADLE3_FILE} --no-cookies --no-check-certificate ${GRADLE3_URL}
-    tempname=$(unzip -Z -1 ${base_dir}/${SAVE_PATH}/${GRADLE3_FILE} | awk -F "/" '{print $1}' | sed -n '1p')
+    info "download gradle [${GRADLE_VERSION}] start..."
+    info "download url [${GRADLE_URL}]"
+    wget -c -O ${base_dir}/${SAVE_PATH}/${GRADLE_FILE} --no-cookies --no-check-certificate ${GRADLE_URL}
+    tempname=$(unzip -Z -1 ${base_dir}/${SAVE_PATH}/${GRADLE_FILE} | awk -F "/" '{print $1}' | sed -n '1p')
     rm -rf ${base_dir}/${SAVE_PATH}/${tempname}
-    unzip -q ${base_dir}/${SAVE_PATH}/${GRADLE3_FILE} -d ${base_dir}/${SAVE_PATH}
+    unzip -q ${base_dir}/${SAVE_PATH}/${GRADLE_FILE} -d ${base_dir}/${SAVE_PATH}
     info2 "unzip path [${base_dir}/${SAVE_PATH}/${tempname}]"
-    success "download gradle [${GRADLE3_VERSION}] success, local path is [${base_dir}/${SAVE_PATH}/${GRADLE3_FILE}]."
-    echo
-    info "download gradle [${GRADLE4_VERSION}] start..."
-    info "download url [${GRADLE4_URL}]"
-    wget -c -O ${base_dir}/${SAVE_PATH}/${GRADLE4_FILE} --no-cookies --no-check-certificate ${GRADLE4_URL}
-    tempname=$(unzip -Z -1 ${base_dir}/${SAVE_PATH}/${GRADLE4_FILE} | awk -F "/" '{print $1}' | sed -n '1p')
-    rm -rf ${base_dir}/${SAVE_PATH}/${tempname}
-    unzip -q ${base_dir}/${SAVE_PATH}/${GRADLE4_FILE} -d ${base_dir}/${SAVE_PATH}
-    info2 "unzip path [${base_dir}/${SAVE_PATH}/${tempname}]"
-    success "download gradle [${GRADLE4_VERSION}] success, local path is [${base_dir}/${SAVE_PATH}/${GRADLE4_FILE}]."
+    success "download gradle [${GRADLE_VERSION}] success, local path is [${base_dir}/${SAVE_PATH}/${GRADLE_FILE}]."
     return 0
 }
 
