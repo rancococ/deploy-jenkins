@@ -17,6 +17,7 @@ services:
       - JENKINS_UC_EXPERIMENTAL=https://mirrors.huaweicloud.com/jenkins/updates/experimental/
     volumes:
       - /etc/localtime:/etc/localtime:ro
+      - /usr/bin/docker:/usr/bin/docker:ro
       - ./volume/jenkins/home:/var/jenkins_home:rw
       - ./volume/jenkins/data:/var/jenkins_data:rw
       - ./volume/jenkins/back:/var/jenkins_back:rw
